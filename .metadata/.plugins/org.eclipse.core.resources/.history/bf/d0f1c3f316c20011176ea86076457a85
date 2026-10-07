@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--
+	===========================================================
+	11_regist.jsp  -  사람 등록 폼
+	-----------------------------------------------------------
+	[학습 포인트]
+	- form 의 action : 값을 보낼 주소 (여기서는 Servlet 주소인 "main")
+	- form 의 method : GET(주소창에 노출) / POST(본문에 담아 전송)
+	- input 의 name : 서버에서 값을 꺼낼 때 사용하는 "이름표"
+	  -> request.getParameter("name") 의 "name" 이 바로 이것!
+	- hidden : 화면에 보이지 않지만 함께 전송되는 값 (어떤 작업인지 구분용)
+	- checkbox 는 name 을 같게 만들어 getParameterValues() 로 한 번에 받는다.
+	===========================================================
+--%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>등록</title>
+</head>
+<body>
+<h3>사람 등록</h3>
+	<form action="main" method="POST">
+		<input type="hidden" name="act" value="regist">
+		<label>이름 : </label>
+		<input type="text" placeholder="이름을 입력하세요" name="name"><br>
+		<label>나이 : </label>
+		<input type="number" min="0" placeholder="나이를 입력하세요" name="age"><br>
+		<input type="radio" id="man" name="gender" value="man">
+		<label for="man">남자</label>
+		<input type="radio" id="woman" name="gender" value="woman">
+		<label for="woman">여자</label>
+		
+		<fieldset>
+			<legend>취미</legend>
+			<input type="checkbox" id="sleep" name="hobby" value="sleep">
+			<label for="sleep">수면</label>
+			<input type="checkbox" id="eat" name="hobby" value="eat">
+			<label for="eat">먹기</label>
+			<input type="checkbox" id="study" name="hobby" value="study">
+			<label for="study">공부</label>
+		</fieldset>
+		<input type="submit" value="등록">
+	</form>
+</body>
+</html> 

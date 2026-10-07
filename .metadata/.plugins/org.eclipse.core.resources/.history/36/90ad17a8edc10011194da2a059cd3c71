@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--
+	===========================================================
+	04_Declaration.jsp  -  선언부(Declaration)
+	-----------------------------------------------------------
+	[학습 포인트]
+	- <%! %> : 선언부. 변환된 Servlet 클래스의 "멤버(필드/메서드)" 가 된다.
+	- <%  %> : 스크립트릿. _jspService() 메서드 "안의 지역 변수/코드" 가 된다.
+	  -> 그래서 스크립트릿 안에서는 메서드를 정의할 수 없다! (자바 문법상 불가)
+	===========================================================
+--%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선언부</title>
+</head>
+<body>
+	<a href="index.html">홈으로</a>
+</body>
+</html> 

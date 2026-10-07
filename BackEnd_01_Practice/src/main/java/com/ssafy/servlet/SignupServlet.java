@@ -1,0 +1,54 @@
+package com.ssafy.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ssafy.dto.Person;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SignupServlet
+ */
+@WebServlet("/signup")
+public class SignupServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	List<Person> pList = new ArrayList<>();	// 추후에는 다른 class 파일로 저장관리 (메모리)
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String gender = request.getParameter("gender");
+		String[] hobbies = request.getParameterValues("hobby");
+		
+		// 1회성으로 받고 처리 땡 - DB 관리 전 메모리에다가 관리를 해보자
+		Person p = new Person(name, age, gender, hobbies);
+		pList.add(p);
+		
+		
+		
+//		int dan = Integer.parseInt(request.getParameter("dan"));
+		PrintWriter writer = response.getWriter();
+		
+		writer.append("<html>");
+		writer.append("<head>");
+		writer.append("<title>등록결과</title>");
+		writer.append("</head>");
+		writer.append("<body>");
+		writer.append("<h2>회원 등록 결과 출력</h2>");
+		writer.append("<hr>");
+		writer.append(p.toString());
+		writer.append("<hr>");
+		writer.append("</body>");
+		writer.append("</html>");
+	}
+
+}

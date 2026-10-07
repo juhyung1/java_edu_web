@@ -1,0 +1,90 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+// ctrl + shift + O : 자동 임포트 수행
+@WebServlet("/userlist")
+public class UserListServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        // 간단한 이차원 배열로 사용자 데이터 정의
+        String[][] users = {
+            {"홍길동", "hong@email.com", "2023-01-15"},
+            {"김철수", "kim@email.com", "2023-02-20"},
+            {"이영희", "lee@email.com", "2023-03-10"},
+            {"박민수", "park@email.com", "2023-04-05"},
+            {"최수정", "choi@email.com", "2023-05-12"}
+        };
+
+        // 아래에 출력 코드 작성...
+        out.println();
+        out.print("<!DOCTYPE html>\n"                                                                );
+        out.print("<html>\n"                                                                         );
+        out.print("<head>\n"                                                                         );
+        out.print("    <title>사용자 목록</title>\n"                                                 );
+        out.print("    <style>\n"                                                                    );
+        out.print("        body { font-family: Arial, sans-serif; margin: 40px; }\n"                 );
+        out.print("        table { border-collapse: collapse; width: 100%; }\n"                      );
+        out.print("        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }\n"    );
+        out.print("        th { background-color: #f2f2f2; }\n"                                      );
+        out.print("        .header { color: #333; margin-bottom: 20px; }\n"                          );
+        out.print("    </style>\n"                                                                   );
+        out.print("</head>\n"                                                                        );
+        out.print("<body>\n"                                                                         );
+        out.print("    <h1 class='header'>사용자 관리 시스템</h1>\n"                                 );
+        out.print("    <p>총 5명의 사용자가 등록되어 있습니다.</p>\n"                                );
+        out.print("    <table>\n"                                                                    );
+        out.print("        <tr>\n"                                                                   );
+        out.print("            <th>번호</th>\n"                                                      );
+        out.print("            <th>이름</th>\n"                                                      );
+        out.print("            <th>이메일</th>\n"                                                    );
+        out.print("            <th>가입일</th>\n"                                                    );
+        out.print("        </tr>\n"                                                                  );
+        out.print("        <tr>\n"                                                                   );
+        out.print("            <td>1</td>\n"                                                         );
+        out.print("            <td>김철수</td>\n"                                                    );
+        out.print("            <td>kim@example.com</td>\n"                                           );
+        out.print("            <td>2024-01-15</td>\n"                                                );
+        out.print("        </tr>\n"                                                                  );
+        out.print("        <tr>\n"                                                                   );
+        out.print("            <td>2</td>\n"                                                         );
+        out.print("            <td>이영희</td>\n"                                                    );
+        out.print("            <td>lee@example.com</td>\n"                                           );
+        out.print("            <td>2024-02-20</td>\n"                                                );
+        out.print("        </tr>\n"                                                                  );
+        out.print("        <tr>\n"                                                                   );
+        out.print("            <td>3</td>\n"                                                         );
+        out.print("            <td>박민수</td>\n"                                                    );
+        out.print("            <td>park@example.com</td>\n"                                          );
+        out.print("            <td>2024-03-10</td>\n"                                                );
+        out.print("        </tr>\n"                                                                  );
+        out.print("        <tr>\n"                                                                   );
+        out.print("            <td>4</td>\n"                                                         );
+        out.print("            <td>정수진</td>\n"                                                    );
+        out.print("            <td>jung@example.com</td>\n"                                          );
+        out.print("            <td>2024-04-05</td>\n"                                                );
+        out.print("        </tr>\n"                                                                  );
+        out.print("        <tr>\n"                                                                   );
+        out.print("            <td>5</td>\n"                                                         );
+        out.print("            <td>최영수</td>\n"                                                    );
+        out.print("            <td>choi@example.com</td>\n"                                          );
+        out.print("            <td>2024-05-12</td>\n"                                                );
+        out.print("        </tr>\n"                                                                  );
+        out.print("    </table>\n"                                                                   );
+        out.print("    <div style='margin-top: 20px;'>\n"                                            );
+        out.print("        <a href='/adduser'>새 사용자 추가</a>\n"                                  );
+        out.print("    </div>\n"                                                                     );
+        out.print("</body>\n"                                                                        );
+        out.print("</html>"                                                                          );
+    }
+}

@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import="com.ssafy.dto.Person" %>
+    <%@ page import="java.util.*" %>
+<%--
+	===========================================================
+	12_result.jsp  -  등록/상세 결과 화면
+	-----------------------------------------------------------
+	[학습 포인트]
+	- Servlet 이 request.setAttribute("person", p) 로 담아 준 데이터를
+	  request.getAttribute("person") 으로 꺼내 사용한다.
+	- getAttribute() 의 반환 타입은 Object 이므로 형변환이 필요하다.
+	- 이 화면은 forward 로 들어와야 데이터가 있다.
+	  주소창에 직접 12_result.jsp 를 입력하면 데이터가 없어 null 이 된다. -> 반드시 null 검사!
+	- import 가 필요한 클래스는 page 지시자로 선언한다.
+	===========================================================
+--%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>결과</title>
+</head>
+<body>
+	<% 
+	//getAttrubute를 하면 Object로 나와서 -> Person 명시적 형변한을 해주었다.
+	// 이거 그런 특징 가지고 있어? 물어보고 바꾸어야 함 -> instanceof
+	Person p = (Person)request.getAttribute("person"); %>
+	<table>
+		<tr>
+			<td>이름</td>
+			<td><%=p.getName() %></td>
+		</tr>
+		<tr>
+			<td>나이</td>
+			<td><%=p.getAge() %></td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td><%=p.getGender() %></td>
+		</tr>
+		<tr>
+			<td>취미</td>
+			<td><%=Arrays.toString(p.getHobbies()) %></td>
+		</tr>
+	</table>
+	<a href="/BackEnd_02_JSP">홈으로</a>
+</body>
+</html> 

@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--
+	===========================================================
+	05_count.jsp  -  JSP 수명주기(Life Cycle) 확인
+	-----------------------------------------------------------
+	[실습 방법] 새로고침(F5)을 여러 번 눌러 보자.
+	  count1 : 1, 2, 3, 4 ...  (멤버 변수  - 값이 누적된다)
+	  count2 : 1, 1, 1, 1 ...  (지역 변수  - 매 요청마다 새로 생성된다)
+
+	[왜?] JSP는 Servlet으로 변환된다.
+	  - 선언부   -> 클래스의 필드          (객체가 하나이므로 공유)
+	  - 스크립트릿 -> _jspService() 안의 코드 (요청마다 실행 -> 매번 초기화)
+	===========================================================
+--%>
+<%!
+	// 선언부는 주로 이곳에 작성을 많이 하지만 아래에 써도 상관은 없다.
+	int count1 = 0;
+
+
+
+
+
+
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>호출</title>
+</head>
+<body>
+	<% 
+		int count2 = 0;
+	
+		out.print("count1 : " + (++count1));
+		out.print("<br>");
+		out.print("count2 : " + (++count2));
+	%>
+	<a href="index.html">홈으로</a>
+</body>
+</html> 

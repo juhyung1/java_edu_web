@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--
+	===========================================================
+	06_expression.jsp  -  표현식(Expression)
+	-----------------------------------------------------------
+	[학습 포인트]
+	- <%= 값 %> : 값을 문자열로 바꾸어 화면에 출력한다.
+	- 출력할 "값" 만 작성한다. 세미콜론(;)을 붙이면 오류!
+	- 변수 / 연산식 / 메서드 호출 결과 모두 출력할 수 있다.
+	===========================================================
+--%>
+<%!
+	int A = 10;
+	int B = -20;
+	
+	String name = "SSAFY";
+	
+	int abs(int a){
+		return a >= 0 ? a : -a;
+	}
+	%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>표현식</title>
+</head>
+<body>
+	<% out.print(name); %> <br>
+	
+	<%= name %> <br>
+	<%= A %> <br>
+	<%= A+B %> <br>
+	<%= abs(B) %> <br>
+
+
+	<a href="index.html">홈으로</a>
+</body>
+</html> 

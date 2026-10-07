@@ -1,0 +1,39 @@
+package com.ssafy.manager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ssafy.dto.Person;
+
+// 서블릿 컨테이너가 객체 관리를 대신 해주면서..... 싱글턴으로 관리를 해주더라....
+// 얘는 서블릿 컨테이너가 관리 안해줘잉...
+// 싱글턴으로 만들어보자. -> 사람의 목록을 관리 할거야
+public class PersonManager {
+
+	private List<Person> pList = new ArrayList<>();
+	
+	// 싱글턴 -> 1. 외부에서 생성하지 못하게 막곘다
+	private PersonManager() {
+	}
+	
+	// 2. 외부에서 못만들어 -> 나라도 가지고 있자
+	// 5. static 영역에서는 non-static을 활용할 수 없다. 고로 이 친구도 미리 메모리에 올려두어야 한다.
+	private static PersonManager manager = new PersonManager();
+	
+	// 3. 내가 만든 manager를 외부에서 쓸 수 있게 줘야겠다.
+	// 4. 외부에서 인스턴스를 못만든다. 그래서 해당 메서드를 호출하려면 미리 메모리에 올려두어야 한다.
+	public static PersonManager getManager() {
+		return manager;
+	}
+	
+	public void add(Person p) {
+		// p라는 객체를 유효성 검증을 통해 pList에 추가할지 말지를 결정할 수 있다.
+		// p.getAge() -> 나이가 200살이다. 잘못된 것
+		// 사람 등록
+		pList.add(p);
+	}
+	
+	public List<Person> getList() {
+		return pList;
+	}
+}

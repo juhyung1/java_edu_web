@@ -1,0 +1,40 @@
+package com.ssafy.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class GuguServlet
+ */
+@WebServlet({ "/GuguServlet", "/main" })
+public class GuguServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int dan = Integer.parseInt(request.getParameter("dan"));
+		PrintWriter writer = response.getWriter();
+		
+		writer.append("<html>");
+		writer.append("<head>");
+		writer.append("<title>구구만</title>");
+		writer.append("<head>");
+		writer.append("<body>");
+		writer.append("<h2>구구단 결과 출력</h2>");
+		writer.append("<hr>");
+		for(int i = 1; i <= 9; i++) {
+			writer.printf("<div>%d × %d = %d<div>", dan, i, dan*i);
+		}
+		writer.append("<hr>");		
+		writer.append("</body>");		
+		writer.append("</html>");
+
+	}
+
+}

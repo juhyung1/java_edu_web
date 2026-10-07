@@ -1,0 +1,107 @@
+package com.ssafy.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ssafy.dto.Person;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+// 서블릿 한개로 모아서 요기서 실행하겠다
+@WebServlet("/MainServlet")
+public class MainServlet extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+	
+	List<Person> pList = new ArrayList<>();
+	
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 해당 URL로 들어오는 모든 요청은 service 메서드를 실행하게 되어있음
+		// GET요청인지, POST요청인지 구분이 필요한 경우가 왕왕 있다.
+//		request.getMethod()  해당 메서드로 구분할 수 있다
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		// 모든 요청은 전부 다 여기 service 메서드로 온다
+		// 요청이 실제로 하고 싶은 일을 구분해야한다 (등록, 조회, 수정, 삭제, 검색 등등)
+		// 구구단, 회원가입 요청이 여기로 온다.
+		
+		String act = request.getParameter("act");
+		
+		// act 내가 하고싶은 일! 각각의 맞는 코드를 실행
+		// if-else if-else를 쓰던지...
+		// switch를 쓰던지 ...
+		
+		switch (act) {
+		case "gugu":
+			// 구구단 코드가 동작하도록
+			doGugu(request, response);
+			break;
+		case "signup":
+			doRegist(request, response);
+			break;
+		default:
+			// 이도저도 아니면 이거라도 해!
+				
+		}
+		
+		
+		
+		
+	}
+
+	private void doRegist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String gender = request.getParameter("gender");
+		String[] hobbies = request.getParameterValues("hobby");
+		
+		// 1회성으로 받고 처리 땡 - DB 관리 전 메모리에다가 관리를 해보자
+		Person p = new Person(name, age, gender, hobbies);
+		pList.add(p);
+		
+		
+		
+//		int dan = Integer.parseInt(request.getParameter("dan"));
+		PrintWriter writer = response.getWriter();
+		
+		writer.append("<html>");
+		writer.append("<head>");
+		writer.append("<title>등록결과</title>");
+		writer.append("</head>");
+		writer.append("<body>");
+		writer.append("<h2>회원 등록 결과 출력</h2>");
+		writer.append("<hr>");
+		writer.append(p.toString());
+		writer.append("<hr>");
+		writer.append("</body>");
+		writer.append("</html>");
+	}
+
+	private void doGugu(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int dan = Integer.parseInt(request.getParameter("dan"));
+		PrintWriter writer = response.getWriter();
+		
+		writer.append("<html>");
+		writer.append("<head>");
+		writer.append("<title>구구만</title>");
+		writer.append("<head>");
+		writer.append("<body>");
+		writer.append("<h2>구구단 결과 출력</h2>");
+		writer.append("<hr>");
+		for(int i = 1; i <= 9; i++) {
+			writer.printf("<div>%d × %d = %d<div>", dan, i, dan*i);
+		}
+		writer.append("<hr>");		
+		writer.append("</body>");		
+		writer.append("</html>");
+	}
+
+}
